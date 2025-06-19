@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/personality")
@@ -27,9 +28,18 @@ class PersonalityDatasetController {
 
     @CrossOrigin(origins="*")
     @GetMapping("/get")
-    public ResponseEntity<List<PersonalityStructure>> getPersonalityDataset() {
+    public ResponseEntity<List<PersonalityStructure>> getPersonalityDataset(@RequestParam(required = false) Integer limit) {
         try {
-            List<PersonalityStructure> res = personalityRepository.findAll();
+
+            List<PersonalityStructure> res;
+            if (limit != null && limit > 0) {
+                res = personalityRepository.findWithLimit(limit);
+            } else if (limit != null && limit < 0) {
+                return ResponseEntity.noContent().build();
+            }
+
+            else res = personalityRepository.findAll();
+
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
