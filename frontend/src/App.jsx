@@ -1,18 +1,26 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import ForgotPassword from './components/ForgotPassword';
-
-
+import { useState } from 'react';
+import Login from './components/auth/Login';
+import Signup from './components/auth/Signup';
+import ForgotPassword from './components/auth/ForgotPassword';
 
 function App() {
-  return (
-<Routes>
-  <Route path="/" element={<Login />} />
-  <Route path="/signup" element={<Signup />} />
-  <Route path="/forgot-password" element={<ForgotPassword />} />
-</Routes>
+  const [page, setPage] = useState('login');
 
+  const renderPage = () => {
+    switch (page) {
+      case 'signup':
+        return <Signup setPage={setPage} />;
+      case 'forgot-password':
+        return <ForgotPassword setPage={setPage} />;
+      default:
+        return <Login setPage={setPage} />;
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen bg-earth">
+      {renderPage()}
+    </div>
   );
 }
 
