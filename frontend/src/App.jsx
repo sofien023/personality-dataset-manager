@@ -2,6 +2,10 @@ import { useState } from 'react';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ForgotPassword from './components/auth/ForgotPassword';
+import Main from './components/dashboard/main';
+import MainLayout from './components/dashboard/MainLayout';
+
+
 
 function App() {
   const [page, setPage] = useState('login');
@@ -12,6 +16,8 @@ function App() {
         return <Signup setPage={setPage} />;
       case 'forgot-password':
         return <ForgotPassword setPage={setPage} />;
+      case page === 'main' && <MainLayout />:
+        return <Main setPage={setPage} />;
       default:
         return <Login setPage={setPage} />;
     }
