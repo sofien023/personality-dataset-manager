@@ -5,6 +5,9 @@ export default function ForgotPassword({ setPage }) {
             <p className="text-sm text-gray-600 mb-4">
             Enter your email address and we’ll send you instructions to reset your password.
         </p>
+        <form action="">
+
+        
         <input
             className="w-[90%] min-h-[20px] w-fit border-0 bg-transparent border-b 
                 m-[10px] p-[10px] block mx-auto focus:outline-none focus:ring-0 focus:border-none"
@@ -25,6 +28,7 @@ export default function ForgotPassword({ setPage }) {
                 Login
             </button>
             </div>
+        </form>
         </div>
         </div>
     );
