@@ -14,10 +14,11 @@ export default function Login({ setPage }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-earth">
+    
+    <div className=" flex flex-col items-center justify-center h-screen ">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-10 rounded shadow-md w-[400px] space-y-6"
+        className=" p-10 rounded shadow-md w-[400px] space-y-6 bg-gray-200"
       >
         <input
           className="w-[90%] min-h-[20px] w-fit border-0 bg-transparent border-b 

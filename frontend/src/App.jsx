@@ -3,7 +3,6 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Main from './components/dashboard/main';
-import MainLayout from './components/dashboard/MainLayout';
 
 
 
@@ -16,7 +15,7 @@ function App() {
         return <Signup setPage={setPage} />;
       case 'forgot-password':
         return <ForgotPassword setPage={setPage} />;
-      case page === 'main' && <MainLayout />:
+      case  'main' :
         return <Main setPage={setPage} />;
       default:
         return <Login setPage={setPage} />;
@@ -24,7 +23,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-earth">
+    <div className="flex flex-col items-center justify-center h-screen ">
       {renderPage()}
     </div>
   );
