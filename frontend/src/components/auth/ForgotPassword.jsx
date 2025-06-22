@@ -1,6 +1,6 @@
 export default function ForgotPassword({ setPage }) {
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-earth">
+        <div className="w-full bg-[#e0e0e0] flex flex-col items-center justify-center h-screen bg-earth">
         <div className="bg-white p-8 rounded shadow-md w-80">
             <p className="text-sm text-gray-600 mb-4">
             Enter your email address and we’ll send you instructions to reset your password.

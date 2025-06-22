@@ -15,7 +15,7 @@ export default function Login({ setPage }) {
 
   return (
     
-    <div className=" flex flex-col items-center justify-center h-screen ">
+    <div className="w-full bg-[#e0e0e0]  flex flex-col items-center justify-center h-screen ">
       <form
         onSubmit={handleSubmit}
         className=" p-10 rounded shadow-md w-[400px] space-y-6 bg-gray-200"
