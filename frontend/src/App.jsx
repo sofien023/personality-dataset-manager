@@ -5,9 +5,8 @@ import ForgotPassword from './components/auth/ForgotPassword';
 import Main from './components/dashboard/main';
 
 
-
 function App() {
-  const [page, setPage] = useState('login');
+  const [page, setPage] = useState('main');
 
   const renderPage = () => {
     switch (page) {
@@ -23,7 +22,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen ">
+    <div className="flex flex-col items-center justify-center h-screen">
       {renderPage()}
     </div>
   );

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { FaHome, FaCog, FaUser } from 'react-icons/fa';
 
 const menuItems = [
@@ -8,23 +7,17 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
-  const [open, setOpen] = useState(true);
 
   return (
-    <div className={`relative bg-red flex flex-col h-full  ${open ? 'w-64' : 'w-20'}`}>
-     <button
-  onClick={() => setOpen(!open)}
-  className="w-fit py-3 text-left px-4  text-white text-[24px] font-bold">
-  ≡
-</button>
-      <ul className="mt-6 flex flex-col w-full">
+    <div className={`flex flex-col`}>
+      <ul className="flex-col">
         {menuItems.map((item, index) => (
           <li
             key={index}
-            className="flex items-center w-full hover:bg-gray-700 cursor-pointer"
+            className="flex items-center w-full cursor-pointer py-[0.5rem]"
           >
-            <div className="mr-3">{item.icon}</div>
-            {open && <span className="text-base">{item.label}</span>}
+            <div className="ml-[-20px] pr-[5px]">{item.icon}</div>
+            <span className="text-base">{item.label}</span>
           </li>
         ))}
       </ul>
