@@ -3,27 +3,33 @@ import Dashboard from './Dashboard';
 import Navbar from './Navbar';
 import { useState } from 'react';
 
-export default function Main() {  
+export default function Main() {
   const [open, setOpen] = useState(true);
 
   const toggleSidebar = () => {
     setOpen(!open);
   }
+
   return (
-  <>
-    <div className='fixed'>
-    <Navbar setState={toggleSidebar} />
-    
-    <div className="flex h-screen w-[100%]">
-      {open ? (<div className='w-[25%] bg-[#e0e0e0]'>
-        <Sidebar />
+    <>
+      <div className='fixed'>
+        <Navbar setState={toggleSidebar} />
+        <div className="flex h-screen w-full">
+          <div 
+            className={`${
+              open 
+                ? 'translate-x-0 transition-transform duration-1000 ease-in-out transform' 
+                : '-translate-x-full transition-transform duration-1000 ease-in-out transform'
+            } `}
+          >
+            {open && <Sidebar />}
+          </div>
+
+          <div className="flex-1 overflow-scroll w-full ">
+            <Dashboard />
+          </div>
+        </div>
       </div>
-    ) : ""}
-      
-      <div className="flex-1 overflow-scroll w-[75%]">
-        <Dashboard />
-      </div>
-    </div>
-    </div>
-  </>);
+    </>
+  );
 }

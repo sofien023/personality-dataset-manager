@@ -36,7 +36,7 @@ export default function Dashboard() {
               gap: '1rem',
             }}>
             <div
-            className="p-[0.5rem] bg-[#f0f0f0] rounded-lg shadow-md flex flex-col justify-center items-center w-full"
+            className="p-[0.5rem] bg-[#f0f0f0] rounded-lg shadow-md flex flex-col justify-center items-center w-full "
             style={{
               boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               borderRadius: '8px',
