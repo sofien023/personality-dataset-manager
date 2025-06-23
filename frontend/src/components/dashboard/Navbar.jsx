@@ -32,10 +32,10 @@ const Navbar = ({setState}) => (
             <FaBars />
         </button>
         <span style={{ 
-            fontWeight: 'bold', 
-            fontSize: '1.2rem', 
+            fontWeight: 'bold',
+            fontSize: '1.2rem',
             color: '#333' }}>
-            Personality Dataset Manager Dashboard
+            Personality Dataset Manager
         </span>
     </nav>
 );

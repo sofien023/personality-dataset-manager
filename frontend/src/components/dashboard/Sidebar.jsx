@@ -1,23 +1,25 @@
 import { FaHome, FaCog, FaUser } from 'react-icons/fa';
 
 const menuItems = [
-  { icon: <FaHome size={24} />, label: 'Dashboard' },
-  { icon: <FaCog size={24} />, label: 'Settings' },
-  { icon: <FaUser size={24} />, label: 'Profile' },
+  { icon: <FaHome size={24} />, label: 'Dashboard' ,url: '/dashboard' },
+  { icon: <FaCog size={24} />, label: 'Settings', url: '/settings' },
+  { icon: <FaUser size={24} />, label: 'Profile', url: '/profile'},
 ];
 
-export default function Sidebar() {
+export default function Sidebar(setPage) {
 
   return (
     <div className={`flex flex-col`}>
       <ul className="flex-col">
         {menuItems.map((item, index) => (
-          <li
+
+          <li onClick={() => setPage(item.url)}
             key={index}
             className="flex items-center w-full cursor-pointer py-[0.5rem]"
           >
             <div className="ml-[-20px] pr-[5px]">{item.icon}</div>
             <span className="text-base">{item.label}</span>
+            
           </li>
         ))}
       </ul>

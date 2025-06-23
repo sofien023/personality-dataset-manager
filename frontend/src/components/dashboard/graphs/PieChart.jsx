@@ -2,8 +2,8 @@ import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
 const data = [
-    { name: 'Introvert', value: 600 },
-    { name: 'Extrovert', value: 400 },
+    { name: 'Introvert', value: 89 },
+    { name: 'Extrovert', value: 11 },
 ];
 
 const COLORS = ['#0088FE', '#00C49F'];
