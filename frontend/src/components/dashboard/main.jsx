@@ -16,9 +16,9 @@ export default function Main() {
         <Navbar setState={toggleSidebar} />
         <div className="flex h-screen w-full">
           <div 
-            className={`${
-              open 
-                ? 'translate-x-0 transition-transform duration-1000 ease-in-out transform' 
+            className={`h-full top-0 right-0
+${open
+                ? 'translate-x-0 transition-transform duration-1000 ease-in-out transform bg-[#e0e0e0] w-[15%]'
                 : '-translate-x-full transition-transform duration-1000 ease-in-out transform'
             } `}
           >
