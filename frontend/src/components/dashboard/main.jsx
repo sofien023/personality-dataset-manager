@@ -1,7 +1,7 @@
 import Sidebar from './Sidebar';
-import Dashboard from './Dashboard';
-import Profile from './profile';
-import Settings from './settings';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/profile';
+import Settings from './pages/settings';
 import Navbar from './Navbar';
 import { useState } from 'react';
 

@@ -1,5 +1,5 @@
-import Histogram from "./graphs/Histogram";
-import PieChart from "./graphs/PieChart";
+import Histogram from "../graphs/Histogram";
+import PieChart from "../graphs/PieChart";
 
 export default function Dashboard() {
     return (
