@@ -1,14 +1,15 @@
-import { FaHome, FaCog, FaUser } from 'react-icons/fa';
+import { FaHome, FaCog, FaUser, FaPen } from 'react-icons/fa';
 import { useState } from 'react';
 
 const menuItems = [
   { icon: <FaHome size={24} />, label: 'Dashboard' ,url: 'main' },
   { icon: <FaCog size={24} />, label: 'Settings', url: 'settings' },
   { icon: <FaUser size={24} />, label: 'Profile', url: 'profile'},
+  { icon: <FaPen size={24} />, label: 'Add Record', url: 'form'},
 ];
 
-export default function Sidebar({setPage}) {
-  const [activeItem, setActiveItem] = useState('main');
+export default function Sidebar({page, setPage}) {
+  const [activeItem, setActiveItem] = useState(page || 'main');
   return (
     <div className={`flex flex-col`}>
       <ul className="flex-col" style={{

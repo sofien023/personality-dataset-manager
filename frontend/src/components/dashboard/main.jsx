@@ -4,6 +4,7 @@ import Profile from './pages/profile';
 import Settings from './pages/settings';
 import Navbar from './Navbar';
 import { useState } from 'react';
+import RecordForm from './pages/RecordForm';
 
 export default function Main() {
   const [open, setOpen] = useState(true);
@@ -17,6 +18,8 @@ export default function Main() {
         return <Profile />;
       case 'settings':
         return <Settings  />;
+      case 'form':
+        return <RecordForm setPage={setPage}/>;
       default:
         return <Dashboard />;
     }
@@ -38,7 +41,7 @@ ${open
                 : '-translate-x-full transition-transform duration-1000 ease-in-out transform'
             } `}
           >
-            {open && <Sidebar setPage={setPage} />}
+            {open && <Sidebar page={page} setPage={setPage} />}
           </div>
 
           <div className={`flex-1 overflow-scroll w-full `}>
