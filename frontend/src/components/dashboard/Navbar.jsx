@@ -4,13 +4,13 @@ import { FaBars } from 'react-icons/fa';
 const Navbar = ({setState}) => (
     <nav
         style={{
-            width: '100%',
+            width: '100vw',
             height: '60px',
             background: '#fff',
             boxShadow: '0 2px 8px rgba(0,0,0,0.7)',
             display: 'flex',
             alignItems: 'center',
-            padding: '0 24px',
+            padding: '0 0',
             marginTop: '43px',
             zIndex: 100,
         }}

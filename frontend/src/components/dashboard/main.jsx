@@ -1,10 +1,26 @@
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
+import Profile from './profile';
+import Settings from './settings';
 import Navbar from './Navbar';
 import { useState } from 'react';
 
 export default function Main() {
   const [open, setOpen] = useState(true);
+  const [page, setPage] = useState('main');
+
+  const renderPage = () => {
+    switch (page) {
+      case  'main' :
+        return <Dashboard />;
+      case 'profile':
+        return <Profile />;
+      case 'settings':
+        return <Settings  />;
+      default:
+        return <Dashboard />;
+    }
+  };
 
   const toggleSidebar = () => {
     setOpen(!open);
@@ -22,11 +38,11 @@ ${open
                 : '-translate-x-full transition-transform duration-1000 ease-in-out transform'
             } `}
           >
-            {open && <Sidebar />}
+            {open && <Sidebar setPage={setPage} />}
           </div>
 
-          <div className="flex-1 overflow-scroll w-full ">
-            <Dashboard />
+          <div className={`flex-1 overflow-scroll w-full `}>
+            {renderPage()}
           </div>
         </div>
       </div>

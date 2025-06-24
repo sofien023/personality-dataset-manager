@@ -3,12 +3,12 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Main from './components/dashboard/main';
-import Profile from './components/profile';
-import Settings from './components/settings';
+import Profile from './components/dashboard/profile';
+import Settings from './components/dashboard/settings';
 
 
 function App() {
-  const [page, setPage] = useState('login');
+  const [page, setPage] = useState('main');
 
   const renderPage = () => {
     switch (page) {
