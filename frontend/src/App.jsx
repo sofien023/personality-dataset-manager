@@ -3,8 +3,6 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Main from './components/dashboard/main';
-import Profile from './components/dashboard/profile';
-import Settings from './components/dashboard/settings';
 
 
 function App() {
@@ -18,10 +16,6 @@ function App() {
         return <ForgotPassword setPage={setPage} />;
       case  'main' :
         return <Main setPage={setPage} />;
-      case 'profile':
-        return <Profile setPage={setPage} />;
-      case 'settings':
-        return <Settings setPage={setPage} />;
       default:
         return <Login setPage={setPage} />;
     }

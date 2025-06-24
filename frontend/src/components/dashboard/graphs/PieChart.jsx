@@ -9,7 +9,7 @@ const data = [
 const COLORS = ['#0088FE', '#00C49F'];
 
 const SimplePieChart = () => (
-    <PieChart width={300} height={300}>
+    <PieChart width={500} height={300}>
         <Pie
             data={data}
             cx="50%"
