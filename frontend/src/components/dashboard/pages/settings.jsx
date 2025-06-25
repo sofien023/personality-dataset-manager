@@ -18,7 +18,7 @@ function settings() {
         </div>
       </div>
       </>
-    )
-  }
+    );
+}
   
   export default settings
