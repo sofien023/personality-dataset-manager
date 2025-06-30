@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './styles/RecordForm.css';
+import PagerForm from './components/PagerForm.jsx';
+import { RecordInputList } from './Inputs.jsx'; // Assuming this file exports the input components
 
 const initialState = {
     drained_after_socializing: false,
@@ -14,6 +16,7 @@ const initialState = {
 
 const RecordForm = ({ setPage }) => {
     const [form, setForm] = useState(initialState);
+    const [currentPage, setCurrentPage] = useState(0);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -34,6 +37,7 @@ const RecordForm = ({ setPage }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        //console.log('Form submitted:', form);
         //TODO: handle form submission logic here
         setPage('main');
     };
@@ -49,102 +53,17 @@ const RecordForm = ({ setPage }) => {
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
         }}>
         <h2>Record Your Social Behavior</h2>
+        <PagerForm pagesNumber={RecordInputList.length}
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+
+                    />
         <div>
         <form onSubmit={handleSubmit}>
-            <label>
-                Drained After Socializing:
-                <input
-                    type="checkbox"
-                    name="drained_after_socializing"
-                    checked={form.drained_after_socializing}
-                    onChange={handleChange}
-                />
-            </label>
-            <br />
-
-            <label>
-                Friends Circle Size:
-                <input
-                    type="number"
-                    name="friends_circle_size"
-                    value={form.friends_circle_size}
-                    onChange={handleChange}
-                    min={0}
-                />
-            </label>
-            <br />
-
-            <label>
-                Going Outside (per week):
-                <input
-                    type="number"
-                    name="going_outside"
-                    value={form.going_outside}
-                    onChange={handleChange}
-                    min={0}
-                />
-            </label>
-            <br />
-
-            <label>
-                Personality:
-                <select
-                    name="personality"
-                    value={form.personality}
-                    onChange={handleChange}
-                >
-                    <option value="INTROVERT">INTROVERT</option>
-                    <option value="EXTROVERT">EXTROVERT</option>
-                </select>
-            </label>
-            <br />
-
-            <label>
-                Post Frequency (per week):
-                <input
-                    type="number"
-                    name="post_frequency"
-                    value={form.post_frequency}
-                    onChange={handleChange}
-                    min={0}
-                />
-            </label>
-            <br />
-
-            <label>
-                Social Event Attendance (per month):
-                <input
-                    type="number"
-                    name="social_event_attendance"
-                    value={form.social_event_attendance}
-                    onChange={handleChange}
-                    min={0}
-                />
-            </label>
-            <br />
-
-            <label>
-                Stage Fear:</label>
-                <input
-                    type="checkbox"
-                    name="stage_fear"
-                    checked={form.stage_fear}
-                    onChange={handleChange}
-                />
-            <br />
-
-            <label>
-                Time Spent Alone (hours per week):
-                <input
-                    type="number"
-                    name="time_spent_alone"
-                    value={form.time_spent_alone}
-                    onChange={handleChange}
-                    min={0}
-                />
-            </label>
-            <br />
-
+            {RecordInputList[currentPage].src(form, handleChange)}
+            
+            {/* max values should be brought up from the database */}
+            {/* TODO: Construct an api call that does that */}
             <button type="submit">Submit</button>
         </form></div></div></div></>
     );

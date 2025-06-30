@@ -2,11 +2,13 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const sampleData = [
-    { name: 'A', value: 12 },
-    { name: 'B', value: 18 },
-    { name: 'C', value: 5 },
-    { name: 'D', value: 30 },
-    { name: 'E', value: 9 },
+    { name: 'Monday', value: 12 },
+    { name: 'Tuesday', value: 18 },
+    { name: 'Wednesday', value: 5 },
+    { name: 'Thursday', value: 30 },
+    { name: 'Friday', value: 9 },
+    { name: 'Saturday', value: 29 },
+    { name: 'Sunday', value: 20 },
 ];
 
 const Histogram = ({ data = sampleData }) => (

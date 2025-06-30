@@ -18,7 +18,15 @@ export default function Dashboard() {
               marginBottom: '1rem',
             }}
           >
-            <h2 className="text-xl font-semibold mb-2">Dataset Histogram</h2>
+            <h2 className="text-xl font-semibold mb-2">
+            <select>
+              <option value="time_spent_alone">Time spent alone</option>
+              <option value="social_event_attendance">Social Event Attendance</option>
+              <option value="post_frequency">Post Frequency</option>
+              <option value="going_outside">Going Outside</option>
+              <option value="drained_after_socializing">Drained After Socializing</option>
+            </select> 
+            Histogram</h2>
             <Histogram />
           </div>
           <div className="p-[0.5rem] rounded-lg shadow-md flex flex-col justify-center items-center w-full"
