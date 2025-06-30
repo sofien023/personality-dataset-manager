@@ -1,7 +1,11 @@
 package com.sofien.personalitydatasetmanager.Controllers;
 
+import com.sofien.personalitydatasetmanager.Models.DTO.RecordedPersonalityStructure;
 import com.sofien.personalitydatasetmanager.Models.PersonalityStructure;
+import com.sofien.personalitydatasetmanager.Models.User;
 import com.sofien.personalitydatasetmanager.Repositories.PersonalityRepository;
+import com.sofien.personalitydatasetmanager.Repositories.RecordedPersonalityRepository;
+import com.sofien.personalitydatasetmanager.Repositories.UserRepository;
 import com.sofien.personalitydatasetmanager.Services.PersonalityDatasetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,9 +23,14 @@ import java.util.stream.Collectors;
 class PersonalityDatasetController {
     @Autowired
     private PersonalityRepository personalityRepository;
+    @Autowired
+    private RecordedPersonalityRepository recordedPersonalityRepository;
 
     // injection
     private final PersonalityDatasetService personalityDatasetService;
+    @Autowired
+    private UserRepository userRepository;
+
     public PersonalityDatasetController(PersonalityDatasetService personalityDatasetService) {
         this.personalityDatasetService = personalityDatasetService;
     }
@@ -62,6 +71,30 @@ class PersonalityDatasetController {
     }
 
     @CrossOrigin(origins="*")
+    @PostMapping("/get/user/{id}")
+    public ResponseEntity<?> getPersonalityDatasetByUserId(@PathVariable Long id) {
+        try {
+            Optional<User> res = Optional.ofNullable(
+                    userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No username exists with that id"))
+            );
+            if (res.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            Optional<RecordedPersonalityStructure> ress = recordedPersonalityRepository.findByUser(res.get());
+
+            if (ress.isEmpty()) {
+                return new ResponseEntity<>("User has no data", HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<>(ress.get(), HttpStatus.OK);
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin(origins="*")
     @PostMapping("/importcsv")
     public ResponseEntity<?> importCSV(@RequestParam("file") String file) {
         try {
@@ -76,9 +109,9 @@ class PersonalityDatasetController {
 
     @CrossOrigin(origins="*")
     @PostMapping("/add-record")
-    public ResponseEntity<?> addRecord(@RequestBody PersonalityStructure personalityStructure) {
+    public ResponseEntity<?> addRecord(@RequestBody RecordedPersonalityStructure personalityStructure) {
         try {
-            personalityRepository.save(personalityStructure);
+            recordedPersonalityRepository.save(personalityStructure);
             return new ResponseEntity<>("Successfully added record", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to add record: " + e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -87,18 +120,18 @@ class PersonalityDatasetController {
 
     @CrossOrigin(origins="*")
     @PutMapping("/modify-record/{id}")
-    public ResponseEntity<?> modifyRecord(@RequestBody PersonalityStructure personalityStructure,
+    public ResponseEntity<?> modifyRecord(@RequestBody RecordedPersonalityStructure personalityStructure,
                                           @PathVariable Long id
     ) {
         try {
-            Optional<PersonalityStructure> optional = Optional.ofNullable(
-                    personalityRepository.findById(id)
+            Optional<RecordedPersonalityStructure> optional = Optional.ofNullable(
+                    recordedPersonalityRepository.findById(id)
                             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
             );
 
-            PersonalityStructure updated = updatePersonalityStructure(personalityStructure, optional);
+            RecordedPersonalityStructure updated = updatePersonalityStructure(personalityStructure, optional);
 
-            personalityRepository.save(updated);
+            recordedPersonalityRepository.save(updated);
 
             return new ResponseEntity<>("Successfully modified record", HttpStatus.OK);
         } catch (Exception e) {
@@ -110,15 +143,15 @@ class PersonalityDatasetController {
     @DeleteMapping("/delete-record/{id}")
     public ResponseEntity<?> deleteRecord(@PathVariable Long id) {
         try {
-            personalityRepository.deleteById(id);
+            recordedPersonalityRepository.deleteById(id);
             return new ResponseEntity<>("Successfully deleted record", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to delete record: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    private static PersonalityStructure updatePersonalityStructure(PersonalityStructure personalityStructure, Optional<PersonalityStructure> optional) {
-        PersonalityStructure updated = optional.get();
+    private static RecordedPersonalityStructure updatePersonalityStructure(RecordedPersonalityStructure personalityStructure, Optional<RecordedPersonalityStructure> optional) {
+        RecordedPersonalityStructure updated = optional.get();
 
         updated.setPersonality(personalityStructure.getPersonality());
         updated.setPostFrequency(personalityStructure.getPostFrequency());

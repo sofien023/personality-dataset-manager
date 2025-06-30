@@ -4,9 +4,11 @@ import com.sofien.personalitydatasetmanager.Models.PersonalityStructure;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface PersonalityRepository extends JpaRepository<PersonalityStructure, Long> {
     @Query(value="SELECT * FROM dataset LIMIT ?1", nativeQuery = true)
     List<PersonalityStructure> findWithLimit(@Param("limit") int limit);

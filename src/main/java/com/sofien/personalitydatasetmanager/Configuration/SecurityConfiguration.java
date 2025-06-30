@@ -48,7 +48,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.PUT, "/api/personality/modify-record/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/personality/delete-record/{id}").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/personality/add-record").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/api/personality/get/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/personality/get/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/personality/get/user/{id}").hasRole("USER")
 
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated()
