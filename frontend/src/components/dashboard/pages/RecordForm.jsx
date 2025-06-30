@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './styles/RecordForm.css';
 import PagerForm from './components/PagerForm.jsx';
-import { RecordInputList } from './Inputs.jsx'; // Assuming this file exports the input components
+import { RecordInputList } from './components/Inputs.jsx'; // Assuming this file exports the input components
 
 const initialState = {
     drained_after_socializing: false,
