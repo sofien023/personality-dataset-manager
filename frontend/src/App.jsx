@@ -6,7 +6,7 @@ import Main from './components/dashboard/main';
 
 
 function App() {
-  const [page, setPage] = useState('main');
+  const [page, setPage] = useState('login');
 
   const renderPage = () => {
     switch (page) {

@@ -14,7 +14,7 @@ export default function Dashboard() {
               backgroundColor: '#f0f0f0',
               display: 'inline-flex',
               width: '100%',
-              maxWidth: '100%',
+              minWidth: '100%',
               marginBottom: '1rem',
             }}
           >
@@ -48,19 +48,7 @@ export default function Dashboard() {
             <h2 className="text-xl font-semibold mb-2">Dataset Histogram</h2>
             <PieChart />
             </div>
-            <div
-            className="p-[0.5rem] bg-[#f0f0f0] rounded-lg shadow-md flex flex-col justify-center items-center w-full"
-            style={{
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-              borderRadius: '8px',
-              backgroundColor: '#f0f0f0',
-              display: 'inline-flex',
-              marginBottom: '1rem',
-            }}
-          >
-            <h2 className="text-xl font-semibold mb-2">Dataset Histogram</h2>
-            <PieChart />
-            </div>
+            
             </div>
           </div>
         </div>
