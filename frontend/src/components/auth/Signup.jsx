@@ -20,12 +20,11 @@ export default function Signup({ setPage }) {
           type="password"
           placeholder="Password"
         />
-        <button
+         <input
           type="submit"
-          className="w-[90%] min-h-[20px] rounded-[5px] p-[10px] border-0 w-fit mx-auto block m-[15px]"
-        >
-          Sign Up
-        </button>
+          className="w-[90%] min-h-[20px] rounded-[5px] border-0 w-fit m-[15px] p-[10px] mx-auto block"
+          value="Sign up"
+        />
 
         <div className="text-center m-[3px] p-[6px]inline-block">
           Already have an account?{' '}

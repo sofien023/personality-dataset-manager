@@ -9,17 +9,16 @@ export default function ForgotPassword({ setPage }) {
 
         
         <input
-            className="w-[90%] min-h-[20px] w-fit border-0 bg-transparent border-b 
+            className="w-[90%] min-h-[20px] w-fit border-0 bg-transparent border-b
                 m-[10px] p-[10px] block mx-auto focus:outline-none focus:ring-0 focus:border-none"
             type="email"
             placeholder="Your Email"
         />
-        <button
-            type="submit"
-            className="w-[90%] min-h-[20px] rounded-[5px] p-[10px] border-0 w-fit mx-auto block m-[15px]  cursor-pointer"
-        >
-            Send Reset Link
-        </button>
+         <input
+          type="submit"
+          className="w-[90%] min-h-[20px] rounded-[5px] border-0 w-fit m-[15px] p-[10px] mx-auto block"
+          value="Send Reset Link"
+        />
         <div className="text-sm text-center m-[10px] p-[6px]">
             Back to{' '}
             <button
