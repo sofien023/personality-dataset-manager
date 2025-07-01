@@ -2,15 +2,16 @@ package com.sofien.personalitydatasetmanager.Models;
 
 import com.sofien.personalitydatasetmanager.Models.Enums.PERSONALITY_TYPE;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
-@Table(name="dataset")
-public class PersonalityStructure {
+@Table(name="user_dataset")
+public class RecordedPersonalityStructure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +25,11 @@ public class PersonalityStructure {
     private int postFrequency;
     private PERSONALITY_TYPE personality;
 
-    public PersonalityStructure(int timeSpentAlone, boolean stageFear, int socialEventAttendance, int goingOutside, boolean drainedAfterSocializing, int friendsCircleSize, int postFrequency, PERSONALITY_TYPE personality) {
+    @ManyToOne
+    @JoinColumn(name="user_id", foreignKey = @ForeignKey(name="user_personality_fkey"))
+    private User user;
+
+    public RecordedPersonalityStructure(int timeSpentAlone, boolean stageFear, int socialEventAttendance, int goingOutside, boolean drainedAfterSocializing, int friendsCircleSize, int postFrequency) {
         this.timeSpentAlone = timeSpentAlone;
         this.stageFear = stageFear;
         this.socialEventAttendance = socialEventAttendance;
@@ -32,7 +37,6 @@ public class PersonalityStructure {
         this.drainedAfterSocializing = drainedAfterSocializing;
         this.friendsCircleSize = friendsCircleSize;
         this.postFrequency = postFrequency;
-        this.personality = personality;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class PersonalityStructure {
                 ", drainedAfterSocializing=" + drainedAfterSocializing +
                 ", friendsCircleSize=" + friendsCircleSize +
                 ", postFrequency=" + postFrequency +
-                ", personality=" + personality +
+                ", personalityType=" + personality +
                 '}';
     }
 }

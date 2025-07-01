@@ -43,13 +43,15 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/api/personality/get").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/personality/get").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/personality/import").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/personality/modify-record/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/personality/delete-record/{id}").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/api/personality/add-record").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/api/personality/get/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/personality/delete-record/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/personality/get/{id}").hasRole("ADMIN")
+
                         .requestMatchers(HttpMethod.POST, "/api/personality/get/user/{id}").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/personality/add-record").hasRole("USER")
+
 
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated()
