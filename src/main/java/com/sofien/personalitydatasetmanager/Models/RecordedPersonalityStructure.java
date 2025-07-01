@@ -1,7 +1,6 @@
-package com.sofien.personalitydatasetmanager.Models.DTO;
+package com.sofien.personalitydatasetmanager.Models;
 
 import com.sofien.personalitydatasetmanager.Models.Enums.PERSONALITY_TYPE;
-import com.sofien.personalitydatasetmanager.Models.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name="dataset")
+@Table(name="user_dataset")
 public class RecordedPersonalityStructure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

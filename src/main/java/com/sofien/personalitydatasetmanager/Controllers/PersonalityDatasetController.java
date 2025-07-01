@@ -1,9 +1,7 @@
 package com.sofien.personalitydatasetmanager.Controllers;
 
-import com.sofien.personalitydatasetmanager.Models.DTO.RecordedPersonalityStructure;
-import com.sofien.personalitydatasetmanager.Models.PersonalityStructure;
+import com.sofien.personalitydatasetmanager.Models.RecordedPersonalityStructure;
 import com.sofien.personalitydatasetmanager.Models.User;
-import com.sofien.personalitydatasetmanager.Repositories.PersonalityRepository;
 import com.sofien.personalitydatasetmanager.Repositories.RecordedPersonalityRepository;
 import com.sofien.personalitydatasetmanager.Repositories.UserRepository;
 import com.sofien.personalitydatasetmanager.Services.PersonalityDatasetService;
@@ -11,18 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/personality")
 class PersonalityDatasetController {
-    @Autowired
-    private PersonalityRepository personalityRepository;
     @Autowired
     private RecordedPersonalityRepository recordedPersonalityRepository;
 
@@ -36,18 +30,18 @@ class PersonalityDatasetController {
     }
 
     @CrossOrigin(origins="*")
-    @GetMapping("/get")
-    public ResponseEntity<List<PersonalityStructure>> getPersonalityDataset(@RequestParam(required = false) Integer limit) {
+    @PostMapping("/get")
+    public ResponseEntity<List<RecordedPersonalityStructure>> getPersonalityDataset(@RequestParam(required = false) Integer limit) {
         try {
 
-            List<PersonalityStructure> res;
+            List<RecordedPersonalityStructure> res;
             if (limit != null && limit > 0) {
-                res = personalityRepository.findWithLimit(limit);
+                res = recordedPersonalityRepository.findWithLimit(limit);
             } else if (limit != null && limit < 0) {
                 return ResponseEntity.noContent().build();
             }
 
-            else res = personalityRepository.findAll();
+            else res = recordedPersonalityRepository.findAll();
 
             return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
@@ -56,11 +50,11 @@ class PersonalityDatasetController {
     }
 
     @CrossOrigin(origins="*")
-    @GetMapping("/get/{id}")
-    public ResponseEntity<PersonalityStructure> getPersonalityDatasetById(@PathVariable Long id){
+    @PostMapping("/get/{id}")
+    public ResponseEntity<RecordedPersonalityStructure> getPersonalityDatasetById(@PathVariable Long id){
         try {
-            Optional<PersonalityStructure> res = Optional.ofNullable(
-                    personalityRepository.findById(id).orElseThrow(() -> new  ResponseStatusException(HttpStatus.NOT_FOUND, "No personality found with id " + id))
+            Optional<RecordedPersonalityStructure> res = Optional.ofNullable(
+                    recordedPersonalityRepository.findById(id).orElseThrow(() -> new  ResponseStatusException(HttpStatus.NOT_FOUND, "No personality found with id " + id))
             );
 
             return res.map(personalityStructure -> new ResponseEntity<>(personalityStructure, HttpStatus.OK))
@@ -94,18 +88,18 @@ class PersonalityDatasetController {
         }
     }
 
-    @CrossOrigin(origins="*")
-    @PostMapping("/importcsv")
-    public ResponseEntity<?> importCSV(@RequestParam("file") String file) {
-        try {
-            System.out.println(file);
-            List<PersonalityStructure> imported = personalityDatasetService.ImportFromCSV(file);
-            personalityRepository.saveAll(imported);
-            return new ResponseEntity<>("Successfully imported " + imported.size() + " records", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Failed to import CSV: " + e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @CrossOrigin(origins="*")
+//    @PostMapping("/importcsv")
+//    public ResponseEntity<?> importCSV(@RequestParam("file") String file) {
+//        try {
+//            System.out.println(file);
+//            List<PersonalityStructure> imported = personalityDatasetService.ImportFromCSV(file);
+//            personalityRepository.saveAll(imported);
+//            return new ResponseEntity<>("Successfully imported " + imported.size() + " records", HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>("Failed to import CSV: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     @CrossOrigin(origins="*")
     @PostMapping("/add-record")
