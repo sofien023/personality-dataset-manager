@@ -1,4 +1,6 @@
 /.venv
-/__pycache__
+/regressor/__pycache__
+/api/__pycache__
+*.pyc
 *.csv
 *.env

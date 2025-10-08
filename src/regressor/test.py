@@ -2,7 +2,7 @@ from module import PersonalityPredictor
 import os
 
 def predict(data):
-    predictor = PersonalityPredictor('personality_dataset.csv')
+    predictor = PersonalityPredictor('src/regressor/personality_dataset.csv')
     predictor.train()
     
     metrics = predictor.evaluate()

@@ -8,7 +8,7 @@ from dataloader import DataLoader
 from regressor import Regressor
 
 class PersonalityPredictor:
-    def __init__(self, data_path: str = 'personality_dataset.csv'):
+    def __init__(self, data_path: str = 'src/regressor/personality_dataset.csv'):
         self.TARGET_COLUMN = 'Personality'
         self.data_path = data_path
         self.data_loader = None
